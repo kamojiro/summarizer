@@ -1,0 +1,6 @@
+@base_url=http://localhost:8000
+@channel_id=1358762570651140216
+
+### channel
+
+GET {{base_url}}/channel/{{channel_id}}/messages
