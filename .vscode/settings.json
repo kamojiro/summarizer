@@ -1,0 +1,17 @@
+{
+    // このプロジェクトでは ruff をフォーマッターとして使用
+    "python.formatting.provider": "ruff",
+
+    // Pythonファイル保存時に自動フォーマット
+    "[python]": {
+        "editor.formatOnSave": true,
+        // "editor.defaultFormatter": "charliermarsh.ruff" // 必要なら指定
+    },
+
+    // Ruff を Linter としても使う設定 (推奨)
+    "python.linting.ruffEnabled": true,
+    "python.linting.enabled": true,
+    "editor.codeActionsOnSave": {
+        "source.fixAll.ruff": "explicit"
+    }
+}
