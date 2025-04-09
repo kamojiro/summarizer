@@ -8,7 +8,7 @@ import uvicorn
 from dotenv import load_dotenv
 
 # routersからインポート
-from routers import discord_messages
+from routers import discord_messages, summary_messages
 
 # --- Discord Bot 設定 ---
 load_dotenv()
@@ -77,6 +77,7 @@ app = fastapi.FastAPI(lifespan=lifespan)
 
 # ルーターの登録
 app.include_router(discord_messages.router)
+app.include_router(summary_messages.router)
 
 
 @app.get("/")
