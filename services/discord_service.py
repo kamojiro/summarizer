@@ -1,8 +1,12 @@
+import os
 from typing import Optional
 
 import discord
+from dotenv import load_dotenv
 from fastapi import HTTPException, Request
 from pydantic import BaseModel
+
+load_dotenv()
 
 
 # --- モデル定義 ---
@@ -87,3 +91,12 @@ class DiscordClass:
                 status_code=500,
                 detail=f"An error occurred while fetching messages: {e}",
             ) from e
+
+    async def get_discord_defined_channel_messages(self):
+        channel_id = int(os.getenv("DISCORD_CHANNEL_ID"))
+        print(f"チャンネルID: {channel_id}")
+        try:
+            return await self.get_discord_channel_messages(channel_id=channel_id)
+        except HTTPException as e:
+            print(f"チャンネルID: {channel_id}")
+            raise e

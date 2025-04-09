@@ -6,6 +6,7 @@ from fastapi import APIRouter, Depends, Request
 from pydantic import BaseModel
 
 from services.discord_service import DiscordClass, Message
+from services.missky_service import MisskyService
 
 load_dotenv()
 
@@ -37,7 +38,10 @@ router = APIRouter(
 async def get_channel_messages(
     request: Request,
     discord_service: DiscordClass = Depends(DiscordClass()),
+    missky_service: MisskyService = Depends(MisskyService),
 ):
+    messages = await discord_service.get_discord_defined_channel_messages()
+    print(messages)
     headers = {"Content-Type": "application/json"}
     url = f"https://{MISSKY_HOST}/api"
 
@@ -49,6 +53,4 @@ async def get_channel_messages(
     }
     print("💠")
     r = requests.post(f"{url}/notes/create", headers=headers, json=body, timeout=5)
-    print(r.status_code)
-    print(r.json())
-    return r.json()
+    return {"text": text}
