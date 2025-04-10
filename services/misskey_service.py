@@ -31,7 +31,7 @@ class MisskeyService:
             await self.message_summary(message.content.strip())
         return messages
 
-    async def message_summary(self, url):
+    async def message_sumamry(self, url):
         title, summary = await self.get_summary_from_url(url)
         text = f"[{title}]({url})\n\n{summary}"
         headers = {"Content-Type": "application/json"}
