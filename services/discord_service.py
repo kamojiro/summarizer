@@ -1,5 +1,5 @@
 import os
-from typing import Optional
+from datetime import datetime
 
 import discord
 from dotenv import load_dotenv
@@ -31,7 +31,7 @@ class DiscordClass:
         return self
 
     async def get_discord_channel_messages(
-        self, channel_id: int, limit: int | None = 100
+        self, channel_id: int, limit: int | None = 100, after: datetime | None = None
     ) -> list[Message]:
         """指定されたチャンネルIDのメッセージ履歴を取得する"""
         if (
@@ -60,7 +60,7 @@ class DiscordClass:
         )
         messages_data: list[Message] = []
         try:
-            async for message in channel.history(limit=limit):
+            async for message in channel.history(limit=limit, after=after):
                 messages_data.extend(
                     [
                         Message(
@@ -77,14 +77,14 @@ class DiscordClass:
             )
             return messages_data
 
-        except discord.errors.Forbidden:
+        except discord.errors.Forbidden as e:
             print(
                 f'エラー: チャンネル "{channel.name}" のメッセージ履歴を読む権限がありません。'
             )
             raise HTTPException(
                 status_code=403,
                 detail=f"Missing permissions to read history in channel {channel_id}.",
-            ) from discord.errors.Forbidden
+            ) from e
         except Exception as e:
             print(f"メッセージ取得中にエラーが発生しました: {e}")
             raise HTTPException(
@@ -92,11 +92,13 @@ class DiscordClass:
                 detail=f"An error occurred while fetching messages: {e}",
             ) from e
 
-    async def get_discord_defined_channel_messages(self):
-        channel_id = int(os.getenv("DISCORD_CHANNEL_ID"))
+    async def get_discord_defined_channel_messages(self, after: datetime | None = None):
+        channel_id = int(os.getenv("DISCORD_CHANNEL_ID") or 0)
         print(f"チャンネルID: {channel_id}")
         try:
-            return await self.get_discord_channel_messages(channel_id=channel_id)
+            return await self.get_discord_channel_messages(
+                channel_id=channel_id, after=after
+            )
         except HTTPException as e:
             print(f"チャンネルID: {channel_id}")
             raise e

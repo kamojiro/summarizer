@@ -762,24 +762,6 @@ wheels = [
 ]
 
 [[package]]
-name = "langchain-google-vertexai"
-version = "2.0.19"
-source = { registry = "https://pypi.org/simple" }
-dependencies = [
-    { name = "google-cloud-aiplatform" },
-    { name = "google-cloud-storage" },
-    { name = "httpx" },
-    { name = "httpx-sse" },
-    { name = "langchain-core" },
-    { name = "pydantic" },
-    { name = "validators" },
-]
-sdist = { url = "https://files.pythonhosted.org/packages/2a/41/d4a494fbdf1e61b88e0dcfa2cf07ea1788802ef4599c4f4f918ea989a819/langchain_google_vertexai-2.0.19.tar.gz", hash = "sha256:a578af30edbbc55c9e28e2605a826eb128c7bb9b9cd9e2e453bf8a925328ec43", size = 83012 }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/a1/0e/0e52a265b4e74b164945a4074afec10f865be5f4b1b64fadbd05bdf21eb1/langchain_google_vertexai-2.0.19-py3-none-any.whl", hash = "sha256:30978dd8942dae5af9a654c5c5b8376db2581d7c84af7086af3d988c9778006f", size = 98870 },
-]
-
-[[package]]
 name = "langchain-text-splitters"
 version = "0.3.8"
 source = { registry = "https://pypi.org/simple" }
@@ -1396,9 +1378,9 @@ dependencies = [
     { name = "beautifulsoup4" },
     { name = "discord-py" },
     { name = "fastapi" },
+    { name = "google-cloud-aiplatform" },
     { name = "httpx" },
     { name = "langchain-community" },
-    { name = "langchain-google-vertexai" },
     { name = "python-dotenv" },
     { name = "requests" },
     { name = "ruff" },
@@ -1416,9 +1398,9 @@ requires-dist = [
     { name = "beautifulsoup4", specifier = ">=4.12.3" },
     { name = "discord-py", specifier = ">=2.3.2" },
     { name = "fastapi", specifier = ">=0.115.12" },
+    { name = "google-cloud-aiplatform", specifier = ">=1.88.0" },
     { name = "httpx", specifier = ">=0.27.0" },
     { name = "langchain-community", specifier = ">=0.3.21" },
-    { name = "langchain-google-vertexai", specifier = ">=2.0.19" },
     { name = "python-dotenv", specifier = ">=1.0.1" },
     { name = "requests", specifier = ">=2.32.3" },
     { name = "ruff", specifier = ">=0.11.4" },
@@ -1494,15 +1476,6 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/4b/4d/938bd85e5bf2edeec766267a5015ad969730bb91e31b44021dfe8b22df6c/uvicorn-0.34.0.tar.gz", hash = "sha256:404051050cd7e905de2c9a7e61790943440b3416f49cb409f965d9dcd0fa73e9", size = 76568 }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/61/14/33a3a1352cfa71812a3a21e8c9bfb83f60b0011f5e36f2b1399d51928209/uvicorn-0.34.0-py3-none-any.whl", hash = "sha256:023dc038422502fa28a09c7a30bf2b6991512da7dcdb8fd35fe57cfc154126f4", size = 62315 },
-]
-
-[[package]]
-name = "validators"
-version = "0.34.0"
-source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/64/07/91582d69320f6f6daaf2d8072608a4ad8884683d4840e7e4f3a9dbdcc639/validators-0.34.0.tar.gz", hash = "sha256:647fe407b45af9a74d245b943b18e6a816acf4926974278f6dd617778e1e781f", size = 70955 }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/6e/78/36828a4d857b25896f9774c875714ba4e9b3bc8a92d2debe3f4df3a83d4f/validators-0.34.0-py3-none-any.whl", hash = "sha256:c804b476e3e6d3786fa07a30073a4ef694e617805eb1946ceee3fe5a9b8b1321", size = 43536 },
 ]
 
 [[package]]

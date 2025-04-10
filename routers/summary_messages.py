@@ -1,12 +1,12 @@
 import os
+from datetime import datetime, timedelta
 
-import requests
 from dotenv import load_dotenv
 from fastapi import APIRouter, Depends, Request
 from pydantic import BaseModel
 
-from services.discord_service import DiscordClass, Message
-from services.missky_service import MisskyService
+from services.discord_service import DiscordClass
+from services.misskey_service import MisskeyService
 
 load_dotenv()
 
@@ -20,14 +20,13 @@ class ErrorResponse(BaseModel):
 
 # ルーターの作成
 router = APIRouter(
-    prefix="/missky",
-    tags=["discord"],
+    prefix="/misskey",
+    tags=["misskey"],
 )
 
 
 @router.get(
     "/summary",
-    response_model=list[Message],
     responses={
         400: {"model": ErrorResponse, "description": "不正なリクエスト"},
         403: {"model": ErrorResponse, "description": "権限がありません"},
@@ -38,19 +37,8 @@ router = APIRouter(
 async def get_channel_messages(
     request: Request,
     discord_service: DiscordClass = Depends(DiscordClass()),
-    missky_service: MisskyService = Depends(MisskyService),
+    misskey_service: MisskeyService = Depends(MisskeyService),
 ):
-    messages = await discord_service.get_discord_defined_channel_messages()
-    print(messages)
-    headers = {"Content-Type": "application/json"}
-    url = f"https://{MISSKY_HOST}/api"
-
-    text = "Hello, World!"
-    body = {
-        "i": MISSKY_TOKEN,
-        "visibility": "home",
-        "text": text,
-    }
-    print("💠")
-    r = requests.post(f"{url}/notes/create", headers=headers, json=body, timeout=5)
-    return {"text": text}
+    after = datetime.now() - timedelta(hours=1)
+    messages = await discord_service.get_discord_defined_channel_messages(after=after)
+    return await misskey_service.message_summaries(messages)

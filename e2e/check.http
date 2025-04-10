@@ -5,4 +5,4 @@
 GET {{base_url}}/channel/{{channel_id}}/messages
 
 ### summary
-GET {{base_url}}/missky/summary
+GET {{base_url}}/misskey/summary
