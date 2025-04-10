@@ -3,9 +3,9 @@ import os
 from contextlib import asynccontextmanager  # lifespanで使用
 
 import discord
-import fastapi
 import uvicorn
 from dotenv import load_dotenv
+from fastapi import FastAPI
 
 # routersからインポート
 from routers import discord_messages, summary_messages
@@ -47,7 +47,7 @@ async def run_discord_bot():
 
 
 @asynccontextmanager
-async def lifespan(app: fastapi.FastAPI):
+async def lifespan(app: FastAPI):
     """FastAPIのライフサイクル管理 (推奨される方法)"""
     print("FastAPI起動、Discord Botをバックグラウンドで起動します...")
     app.state.discord_client = client
@@ -73,7 +73,8 @@ async def lifespan(app: fastapi.FastAPI):
 
 
 # lifespanを指定してFastAPIアプリを作成
-app = fastapi.FastAPI(lifespan=lifespan)
+app = FastAPI(lifespan=lifespan)
+
 
 # ルーターの登録
 app.include_router(discord_messages.router)
@@ -86,4 +87,4 @@ async def read_root():
 
 
 if __name__ == "__main__":
-    uvicorn.run("main:app", host="127.0.0.1", port=8080, reload=True, log_level="info")
+    uvicorn.run("main:app", host="0.0.0.0", port=8080, reload=True, log_level="info")  # noqa: S104
