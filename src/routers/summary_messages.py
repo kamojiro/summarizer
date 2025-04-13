@@ -7,6 +7,7 @@ from pydantic import BaseModel
 
 from services.discord_service import DiscordService
 from services.misskey_service import MisskeyService
+from utils.url_validator import which_url
 
 load_dotenv()
 
