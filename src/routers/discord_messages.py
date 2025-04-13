@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Depends, Request
 from pydantic import BaseModel
 
-from services.discord_service import DiscordClass, Message
+from services.discord_service import DiscordService, Message
 
 
 class ErrorResponse(BaseModel):
@@ -29,7 +29,7 @@ async def get_channel_messages(
     request: Request,
     channel_id: int,
     limit: int | None = 100,
-    discord_service: DiscordClass = Depends(DiscordClass()),
+    discord_service: DiscordService = Depends(DiscordService()),
 ):
     """指定されたチャンネルIDのメッセージ履歴を取得するAPIエンドポイント"""
     return await discord_service.get_discord_channel_messages(channel_id, limit)

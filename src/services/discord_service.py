@@ -18,14 +18,14 @@ class Message(BaseModel):
     created_at: str
 
 
-class DiscordClass:
+class DiscordService:
     """Discordサービスを提供するクラス"""
 
     def __init__(self):
         """初期化"""
         self.discord_client = None
 
-    def __call__(self, request: Request) -> "DiscordClass":
+    def __call__(self, request: Request) -> "DiscordService":
         """依存性注入のためのコールメソッド"""
         self.discord_client = request.app.state.discord_client
         return self

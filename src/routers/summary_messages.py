@@ -5,7 +5,7 @@ from dotenv import load_dotenv
 from fastapi import APIRouter, Depends, Request
 from pydantic import BaseModel
 
-from services.discord_service import DiscordClass
+from services.discord_service import DiscordService
 from services.misskey_service import MisskeyService
 
 load_dotenv()
@@ -36,7 +36,7 @@ router = APIRouter(
 )
 async def get_channel_messages(
     request: Request,
-    discord_service: DiscordClass = Depends(DiscordClass()),
+    discord_service: DiscordService = Depends(DiscordService()),
     misskey_service: MisskeyService = Depends(MisskeyService),
 ):
     after = datetime.now() - timedelta(hours=1)
