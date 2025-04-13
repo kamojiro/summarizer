@@ -15,7 +15,7 @@ WORKDIR /app
 COPY uv.lock uv.lock
 COPY pyproject.toml pyproject.toml
 RUN uv sync --frozen
-COPY . /app
+COPY src /app
 
 # ENTRYPOINT ["python", "main.py"]
 # FastAPI アプリケーション (backend/main.py 内の app) を起動
