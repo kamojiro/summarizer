@@ -4,5 +4,9 @@
 ### channel
 GET {{base_url}}/channel/{{channel_id}}/messages
 
+### rss
+
+GET {{base_url}}/rss/entries
+
 ### summary
 GET {{base_url}}/misskey/summary

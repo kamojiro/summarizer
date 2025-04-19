@@ -8,7 +8,7 @@ from dotenv import load_dotenv
 from fastapi import FastAPI
 
 # routersからインポート
-from routers import discord_messages, summary_messages
+from routers import discord_messages, rss_messages, summary_messages
 
 # --- Discord Bot 設定 ---
 load_dotenv()
@@ -79,6 +79,7 @@ app = FastAPI(lifespan=lifespan)
 # ルーターの登録
 app.include_router(discord_messages.router)
 app.include_router(summary_messages.router)
+app.include_router(rss_messages.router)
 
 
 @app.get("/")
