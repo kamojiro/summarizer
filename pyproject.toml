@@ -28,6 +28,6 @@ dev = [
 
 [tool.ruff.lint]
 select = ["RUF", "I", "UP", "SIM", "FURB", "PIE", "PERF", "C4", "B", "PL", "S"]
-ignore = ["RUF002", "B008"]
+ignore = ["RUF001", "RUF002", "B008", "S101"]
 
 

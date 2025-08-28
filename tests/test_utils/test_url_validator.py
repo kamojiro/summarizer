@@ -15,7 +15,7 @@ class TestWhichUrl:
         with pytest.raises(ValueError) as e:
             which_url("")
         if str(e.value) != "テキストが指定されていません":
-            raise AssertionError(
+            raise Assertio  nError(
                 f"Expected 'テキストが指定されていません', but got {e.value!s}"
             )
 
