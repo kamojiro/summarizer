@@ -12,3 +12,4 @@ wheels/
 # Local Environment Variables
 .env
 tmp/
+WARP.md

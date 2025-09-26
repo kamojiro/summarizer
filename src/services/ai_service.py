@@ -55,10 +55,10 @@ class AIService:
         self.client = genai.Client(
             vertexai=True,
             project=PROJECT_ID,
-            location=REGION,
+            location="us-central1",
             http_options=HttpOptions(api_version="v1"),
         )
-        self.model = "gemini-2.5-flash"
+        self.model = "gemini-2.5-pro"
 
     def _get_tools(self, tool: Literal["search", "url"]) -> list[Tool]:
         if tool == "url":

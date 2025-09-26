@@ -8,7 +8,7 @@ from src.services.ai_service import AIService
 def test_ai_service_initialization():
     ai_service = AIService()
     assert ai_service.client is not None
-    assert ai_service.model == "gemini-2.5-flash"
+    assert ai_service.model == "gemini-2.5-pro"
 
 
 def test_ai_service_generate_content():
